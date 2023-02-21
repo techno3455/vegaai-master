@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+home
+{% endblock title %}
+
+{% block content %}
+<h2>Just tell vega what theory idea you have and it will show it using a simulation, and it will give you some recommendations and a pdf, thank you.</h2>
+<textarea rows="10" cols="150"></textarea>
+<button class="ui purple button">Create Theory</button>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        console.log('hello there.')
+    })
+</script>
+{% endblock scripts %}

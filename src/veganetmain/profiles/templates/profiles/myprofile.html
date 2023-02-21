@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}
+my profile
+{% endblock title %}
+
+{% block content %}
+
+<div class="ui modal mymodal" id="modal1">
+    <i class="close icon"></i>
+    <div class="header">
+      Update your Profile
+    </div>
+    <div class="image content">
+      <div class="ui medium image">
+        <img src="{{profile.avatar.url}}">
+      </div>
+      <div class="description">
+        <div class="ui header">Please provide some information about what you plan on doing or achieving with this platform if you want, thank you and have a good day today:</div>
+        <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="ui positive right labeled icon button">
+        Update
+        <i class="checkmark icon"></i>
+      </button>
+    </form>
+    </div>
+</div>
+
+<div class="ui modal mymodal" id="modal2">
+    <i class="close icon"></i>
+    <div class="header">
+      Create a Theory through a chat prompt.
+    </div>
+    <div class="image content">
+      <div class="ui medium image">
+        <img src="{{profile.avatar.url}}">
+      </div>
+      <div class="description">
+        <div class="ui header">Please input the required information that you would like to simulate your theory from, you will also be able to see your theory being simulated inside of the window below, thank you and have a good day today:</div>
+        <textarea rows="3" cols="60"></textarea>
+        <button class="ui purple button">Create Theory</button>
+            
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="ui positive button">
+        Save
+      </button>
+    </div>
+</div>
+
+
+
+<div class="ui segment">
+    {% if confirm %}
+        <div class="ui green message">Your profile has been updated.</div>
+    {% endif %}
+    <h3>My Profile: {{request.user}}</h3>
+    <div class="ui grid">
+
+    
+    <div class="row">
+        <div class="six wide column">
+            <img class="ui small rounded image" src={{profile.avatar.url}}>
+            <div class="row mt-7">
+                <br>
+                <button data-modal="modal1" class="ui purple button mt-7" id="call-modals">Update your profile.</button>
+            </div>
+            <div class="row mt-7">
+                <br>
+                <button data-modal="modal2" class="ui purple button mt-7" id="call-modal-2">Create a theory.</button>
+            </div>
+        </div>
+            <div class="ten wide column">
+                <table class="ui table">
+                    <tbody>
+                        <tr>
+                            <td>Username: </td>
+                            <td>{{profile.user}}</td>
+                        </tr>
+                        <tr>
+                            <td>First Name: </td>
+                            <td>{{profile.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name: </td>
+                            <td>{{profile.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Biography: </td>
+                            <td>{{profile.bio}}</td>
+                        </tr>
+                        <tr>
+                            <td>Number of Connections: </td>
+                            <td>{{profile.get_connections_num}}</td>
+                        </tr>
+                        <tr>
+                            <td>Number of Connections: </td>
+                            <td>
+                                <ul>
+                                    {% for connection in profile.get_connections%}
+                                    <li>{{connection}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Number of Posts: </td>
+                            <td>{{profile.get_posts_num}}</td>
+                        </tr>
+                        <tr>
+                            <td>Number of Likes Given: </td>
+                            <td>{{profile.get_likes_given_num}}</td>
+                        </tr>
+                        <tr>
+                            <td>Number of Likes Received: </td>
+                            <td>{{profile.get_likes_received_num}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

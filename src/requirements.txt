@@ -1,0 +1,16 @@
+tensorflow
+matplotlib
+numpy
+pandas
+scipy 
+scikit-learn
+wolframalpha
+autograd
+tqdm
+wikipedia
+gtts
+nltk
+serial
+SpeechRecognition
+pyttsx3
+playsound
